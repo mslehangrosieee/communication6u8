@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ms Lê Hằng English - Giao Tiếp & Hội Thoại Siêu Cấp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Quicksand:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --primary-purple: #8854C0;
+            --bright-yellow: #FDCB6E;
+            --mint-teal: #00C9A7;
+            --correct-green: #00D26A;
+            --wrong-red: #FF4757;
+            --neutral-dark: #2D3748;
+            --neutral-light: #F7FAFC;
+        }
+
+        body {
+            font-family: 'Quicksand', 'Nunito', sans-serif;
+            min-height: 100vh;
+            color: var(--neutral-dark);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .animated-gradient {
+            background: linear-gradient(135deg, #8854C0, #FDCB6E, #00C9A7);
+            background-size: 400% 400%;
+            animation: loangGradient 12s ease infinite;
+        }
+
+        @keyframes loangGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .svg-pattern-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.18;
+            mix-blend-mode: overlay;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'%3E%3Cg fill='%23FFFFFF'%3E%3Ccircle cx='10' cy='10' r='4'/%3E%3Cpath d='M80 20 L85 28 L75 28 Z'/%3E%3Cpath d='M30 70 Q35 60 40 70 T50 70' fill='none' stroke='%23FFFFFF' stroke-width='2'/%3E%3Ccircle cx='70' cy='75' r='5'/%3E%3Ctext x='45' y='25' font-size='14'%3E⭐%3C/text%3E%3Ctext x='15' y='45' font-size='14'%3E🐱%3C/text%3E%3Ctext x='80' y='50' font-size='14'%3E🌸%3C/text%3E%3Ctext x='20' y='85' font-size='14'%3E☁️%3C/text%3E%3C/g%3E%3C/svg%3E");
+            animation: floatingBackground 60s linear infinite;
+        }
+
+        @keyframes floatingBackground {
+            from { background-position: 0 0; }
+            to { background-position: 500px 1000px; }
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 255, 255, 0.6);
+            border-radius: 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.3s ease;
+        }
+
+        .btn-3d {
+            transition: all 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-bottom: 6px solid #CBD5E0;
+        }
+
+        .btn-3d:hover:not(.disabled) {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-3d:active:not(.disabled) {
+            transform: translateY(4px);
+            border-bottom-width: 1px;
+        }
+
+        .btn-answer {
+            background-color: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            border-bottom: 6px solid #CBD5E0;
+            color: var(--neutral-dark);
+        }
+
+        .btn-answer.correct {
+            background-color: var(--correct-green) !important;
+            color: white !important;
+            border-color: #48BB78 !important;
+            border-bottom: 6px solid #2F855A !important;
+            box-shadow: 0 8px 0 rgba(72, 187, 120, 0.2);
+        }
+
+        .btn-answer.wrong {
+            background-color: var(--wrong-red) !important;
+            color: white !important;
+            border-color: #F56565 !important;
+            border-bottom: 6px solid #9B2C2C !important;
+            box-shadow: 0 8px 0 rgba(245, 101, 116, 0.2);
+        }
+
+        .shake {
+            animation: shakeElement 0.4s ease-in-out;
+        }
+
+        @keyframes shakeElement {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+
+        .explanation-box {
+            background: #F7FAFC;
+            border-left: 8px solid var(--bright-yellow);
+            border-radius: 20px;
+            box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+            animation: slideDownFade 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes slideDownFade {
+            from { opacity: 0; transform: translateY(-12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .exp-english {
+            color: #1A365D;
+            font-weight: 800;
+        }
+
+        .exp-meaning {
+            color: #C53030;
+            font-weight: 700;
+        }
+
+        /* Confetti canvas */
+        #confetti-canvas {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body class="animated-gradient pb-24">
+
+    <!-- Background Pattern & Canvas -->
+    <div class="svg-pattern-overlay"></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <div class="w-full bg-white/95 backdrop-blur-md border-b-4 border-teal-600 sticky top-0 z-50 py-3 px-4 shadow-md flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+            <div class="bg-teal-700 text-white p-2.5 rounded-2xl shadow-inner">
+                <i class="fa-solid fa-graduation-cap text-2xl text-yellow-300"></i>
+            </div>
+            <div>
+                <h1 class="text-base md:text-lg font-black text-teal-800 tracking-tight leading-tight">Ms Lê Hằng English</h1>
+                <p class="text-xs font-bold text-teal-600">Luyện Tập Giao Tiếp & Hội Thoại Tiếng Anh Siêu Cấp</p>
+            </div>
+        </div>
+
+        <!-- Timer Control Bar -->
+        <div class="flex items-center gap-2 bg-slate-100 p-1.5 rounded-2xl border-2 border-slate-200">
+            <button id="timer-btn" onclick="toggleTimerControl()" class="bg-gradient-to-r from-amber-500 to-orange-500 text-white font-black px-4 py-2 rounded-xl text-xs flex items-center gap-2 shadow-md hover:brightness-110 active:scale-95 transition-all">
+                <i class="fa-solid fa-play" id="timer-icon"></i>
+                <span id="timer-btn-text">BẮT ĐẦU TÍNH GIỜ LÀM BÀI</span>
+            </button>
+            <div id="timer-display-box" class="hidden text-slate-800 font-black text-sm md:text-base px-3 py-1.5 bg-white rounded-lg border border-slate-300">
+                10:00
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 max-w-4xl mt-6">
+        <div class="bg-gradient-to-r from-amber-50 to-yellow-50 border-4 border-amber-400 rounded-3xl p-5 text-center shadow-lg relative overflow-hidden">
+            <div class="absolute -top-6 -right-6 w-16 h-16 bg-amber-400 rotate-45"></div>
+            <h3 class="text-lg font-black text-amber-800 flex justify-center items-center gap-2 mb-2">
+                <i class="fa-solid fa-triangle-exclamation text-xl text-amber-500 animate-bounce"></i> 
+                LỜI NHẮC CỰC KỲ QUAN TRỌNG
+                <i class="fa-solid fa-triangle-exclamation text-xl text-amber-500 animate-bounce"></i>
+            </h3>
+            <p class="text-amber-900 font-bold text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+                Chỉ có <span class="text-red-500 underline decoration-2 font-black">đọc kỹ giải thích ngay sau mỗi câu</span>, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên.
+            </p>
+            <p class="text-amber-800 font-extrabold text-xs md:text-sm mt-2">
+                Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích!
+            </p>
+            <div class="mt-3 text-purple-700 font-black tracking-widest text-xs animate-pulse">
+                * Kéo tới đâu, làm tới đó! *
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 max-w-4xl mt-6">
+        <div class="bg-black/25 p-2 rounded-3xl backdrop-blur-md overflow-x-auto whitespace-nowrap scrollbar-none flex justify-center gap-3" id="tab-nav-container">
+            <button onclick="switchCategory('ex1')" id="tab-ex1" class="py-2.5 px-6 rounded-2xl text-sm font-black transition-all bg-white text-slate-800 shadow-md">
+                💬 Exercise 1: Exchanges
+            </button>
+            <button onclick="switchCategory('ex2')" id="tab-ex2" class="py-2.5 px-6 rounded-2xl text-sm font-black transition-all bg-white/40 text-white">
+                🔀 Exercise 2: Conversation
+            </button>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-4 max-w-3xl mt-6">
+        <div id="questions-workspace" class="space-y-8">
+            <!-- Dynamic questions render here -->
+        </div>
+    </main>
+
+    <footer class="fixed bottom-0 left-0 w-full bg-white/95 border-t-4 border-teal-600 px-4 py-3 shadow-[0_-8px_30px_rgba(0,0,0,0.15)] flex items-center justify-between gap-4 z-40 backdrop-blur-sm">
+        <div class="flex items-center gap-3">
+            <div class="bg-amber-100 text-amber-800 py-1.5 px-4 rounded-2xl flex items-center gap-2 font-black text-xs md:text-sm border border-amber-300 shadow-sm">
+                <i class="fa-solid fa-star text-amber-500 animate-spin-slow"></i>
+                <span>Tiến trình: <span id="footer-answered-counter" class="text-teal-600 text-lg">0</span>/<span id="footer-total-counter" class="text-teal-600 text-lg">0</span> câu</span>
+            </div>
+            <div class="hidden sm:block w-40 md:w-64 bg-gray-200 h-4 rounded-full overflow-hidden shadow-inner border border-gray-300">
+                <div class="bg-gradient-to-r from-teal-400 to-green-400 h-full w-0 transition-all duration-300 rounded-full" id="footer-progress-bar-fill"></div>
+            </div>
+        </div>
+        <button onclick="submitTestAssessment()" class="bg-gradient-to-r from-teal-500 to-emerald-500 text-white font-black px-6 py-2.5 rounded-2xl shadow-[0_5px_0px_#047857] hover:brightness-110 active:translate-y-1 active:shadow-none transition-all flex items-center gap-2 text-xs md:text-sm">
+            <i class="fa-solid fa-flag-checkered"></i> NỘP BÀI TỔNG KẾT
+        </button>
+    </footer>
+
+    <!-- Assessment Result Dialog -->
+    <div id="result-evaluation-modal" class="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 hidden backdrop-blur-sm">
+        <div class="bg-white rounded-[32px] p-6 md:p-8 w-full max-w-lg border-4 border-teal-400 shadow-2xl text-center">
+            <div class="text-5xl mb-3">🏆</div>
+            <h3 class="text-xl md:text-2xl font-black text-teal-700 mb-2">Đánh Giá Kết Quả Học Tập</h3>
+            <div class="bg-teal-50 p-4 rounded-2xl border-2 border-dashed border-teal-200 mb-4">
+                <p class="text-gray-500 font-bold text-sm">Điểm số đạt được:</p>
+                <p class="text-4xl font-extrabold text-emerald-500 animate-bounce" id="evaluation-percentage">0%</p>
+                <p class="text-xs text-teal-600 mt-1 font-bold" id="evaluation-fraction">(0/0 câu đúng)</p>
+            </div>
+            <p class="text-gray-700 font-bold text-sm md:text-base mb-6 leading-relaxed text-left max-h-48 overflow-y-auto p-3 bg-slate-50 rounded-xl border border-slate-100" id="evaluation-praise-box"></p>
+            <div class="flex gap-3">
+                <button onclick="restartTestSession()" class="flex-1 bg-amber-400 text-amber-950 border-b-4 border-amber-600 font-black py-3 rounded-2xl active:translate-y-1 active:border-b-0 transition-all text-sm">
+                    Làm lại bài <i class="fa-solid fa-rotate-right"></i>
+                </button>
+                <button onclick="closeEvaluationDialog()" class="flex-1 bg-gray-200 text-gray-700 border-b-4 border-gray-400 font-black py-3 rounded-2xl active:translate-y-1 active:border-b-0 transition-all text-sm">
+                    Xem lại đáp án
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        let audioCtx = null;
+
+        function playGamifiedSound(soundType) {
+            try {
+                if (!audioCtx) audioCtx = new AudioContextClass();
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                if (soundType === 'correct') {
+                    // Premium Ding-Dong chime sound
+                    oscillator.type = 'sine';
+                    oscillator.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+                    gainNode.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                    oscillator.start();
+                    oscillator.stop(audioCtx.currentTime + 0.35);
+
+                    setTimeout(() => {
+                        const osc2 = audioCtx.createOscillator();
+                        const gain2 = audioCtx.createGain();
+                        osc2.connect(gain2);
+                        gain2.connect(audioCtx.destination);
+                        osc2.type = 'sine';
+                        osc2.frequency.setValueAtTime(659.25, audioCtx.currentTime); // E5
+                        gain2.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                        gain2.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.35);
+                        osc2.start();
+                        osc2.stop(audioCtx.currentTime + 0.35);
+                    }, 120);
+                } else if (soundType === 'wrong') {
+                    // Fun comical 'Téo tèo tèo / Oh no' sound
+                    oscillator.type = 'sawtooth';
+                    oscillator.frequency.setValueAtTime(140, audioCtx.currentTime);
+                    oscillator.frequency.linearRampToValueAtTime(80, audioCtx.currentTime + 0.45);
+                    gainNode.gain.setValueAtTime(0.12, audioCtx.currentTime);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.45);
+                    oscillator.start();
+                    oscillator.stop(audioCtx.currentTime + 0.45);
+                }
+            } catch (err) {
+                console.log("Audio synthesis error: ", err);
+            }
+        }
+
+        const canvas = document.getElementById('confetti-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvasSize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvasSize);
+        resizeCanvasSize();
+
+        function spawnChimeConfetti() {
+            particles = [];
+            for (let i = 0; i < 75; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    size: Math.random() * 8 + 6,
+                    color: ['#8854C0', '#FDCB6E', '#00C9A7', '#00D26A', '#FF4757'][Math.floor(Math.random() * 5)],
+                    speedY: Math.random() * 4 + 3,
+                    speedX: Math.random() * 4 - 2,
+                    rotation: Math.random() * 360,
+                    rotationSpeed: Math.random() * 6 - 3
+                });
+            }
+            animateParticles();
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            let hasActiveParticles = false;
+            particles.forEach(p => {
+                p.y += p.speedY;
+                p.x += p.speedX;
+                p.rotation += p.rotationSpeed;
+                if (p.y < canvas.height) {
+                    hasActiveParticles = true;
+                    ctx.save();
+                    ctx.translate(p.x, p.y);
+                    ctx.rotate(p.rotation * Math.PI / 180);
+                    ctx.fillStyle = p.color;
+                    ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+                    ctx.restore();
+                }
+            });
+            if (hasActiveParticles) requestAnimationFrame(animateParticles);
+        }
+
+        function shuffleArrayElements(array) {
+            let shuffled = [...array];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled;
+        }
+
+        let remainingTime = 600; // 10 minutes
+        let timerInterval = null;
+        let isTimerActive = false;
+
+        function toggleTimerControl() {
+            const btnText = document.getElementById('timer-btn-text');
+            const displayBox = document.getElementById('timer-display-box');
+            const icon = document.getElementById('timer-icon');
+
+            if (!isTimerActive) {
+                isTimerActive = true;
+                displayBox.classList.remove('hidden');
+                btnText.innerText = 'TẠM DỪNG';
+                icon.className = 'fa-solid fa-pause';
+                
+                timerInterval = setInterval(() => {
+                    remainingTime--;
+                    updateCountdownDisplay();
+                    if (remainingTime <= 0) {
+                        clearInterval(timerInterval);
+                        isTimerActive = false;
+                        btnText.innerText = 'BẮT ĐẦU LẠI';
+                        icon.className = 'fa-solid fa-rotate-right';
+                        showCountdownAlert();
+                    }
+                }, 1000);
+            } else {
+                isTimerActive = false;
+                clearInterval(timerInterval);
+                btnText.innerText = 'TIẾP TỤC';
+                icon.className = 'fa-solid fa-play';
+            }
+        }
+
+        function updateCountdownDisplay() {
+            const displayBox = document.getElementById('timer-display-box');
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+            displayBox.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function showCountdownAlert() {
+            // Replaces custom browser alert with safe custom styling modal presentation
+            const modal = document.getElementById('result-evaluation-modal');
+            const praiseBox = document.getElementById('evaluation-praise-box');
+            praiseBox.innerHTML = "Đã hết giờ làm bài. Bạn vẫn có thể tiếp tục làm, nhưng nhớ là trong phòng thi thật, bạn chỉ nên làm một bài như thế này trong 10 phút thôi nha.";
+            document.getElementById('evaluation-percentage').innerText = "Hết Giờ!";
+            document.getElementById('evaluation-fraction').innerText = "";
+            modal.classList.remove('hidden');
+        }
+
+        const database = {
+            "ex1": [
+                {
+                    id: "ex1_q1",
+                    title: "Anna & Ben: Healthy Lifestyle",
+                    q: "Anna: I think we should try to have a healthier lifestyle. _________ going to the gym together twice a week?<br>Ben: That sounds great! Let's start next Monday.",
+                    options: ["What about", "Do you mind", "Could you", "Would you like"],
+                    answer: "What about",
+                    exp: "1. <strong>Dịch câu hỏi sang tiếng Việt:</strong><br>Anna: \"Tớ nghĩ chúng ta nên cố gắng có một lối sống lành mạnh hơn. _________ đi tập gym cùng nhau hai lần một tuần nhé?\"<br>Ben: \"Nghe tuyệt đấy! Chúng ta bắt đầu vào thứ Hai tới đi.\"<br><br>2. <strong>Phân tích từ vựng 4 đáp án:</strong><br>• <span class='exp-english'>What about</span> (+ V-ing): Thế còn việc... thì sao? (Dùng để đưa ra lời đề nghị, gợi ý hành động).<br>• <span class='exp-english'>Do you mind</span> (+ V-ing): Bạn có phiền... không? (Dùng để xin phép hoặc nhờ vả lịch sự).<br>• <span class='exp-english'>Could you</span> (+ V-bare): Bạn có thể... không? (Dùng để yêu cầu người khác làm gì giúp mình).<br>• <span class='exp-english'>Would you like</span> (+ to-V): Bạn có muốn... không? (Dùng để mời lịch sự).<br><br>3. <strong>Tại sao chọn What about:</strong> Đằng sau khoảng trống có danh động từ 'going' (V-ing). Xét theo ngữ nghĩa, Anna đang đưa ra một lời gợi ý làm một việc có ích cho cả hai (\"going to the gym together\"). Cấu trúc \"What about + V-ing?\" là lời rủ rê, gợi ý cực kỳ tự nhiên và chính xác. Ben đồng ý bằng câu \"That sounds great!\".<br><br>4. <strong>Tại sao loại khác:</strong> 'Do you mind' mặc dù đi với V-ing nhưng nghĩa là \"Bạn có phiền không?\" (không hợp ngữ cảnh rủ rê hào hứng). 'Could you' đi với V nguyên thể. 'Would you like' đi với To-V."
+                },
+                {
+                    id: "ex1_q2",
+                    title: "Tom & Lisa: Social Media",
+                    q: "Tom: In my opinion, social media is changing young people's lifestyle too much.<br>Lisa: _________. They spend hours on their phones instead of talking face-to-face.",
+                    options: ["You're joking", "I totally agree", "Are you serious", "That's strange"],
+                    answer: "I totally agree",
+                    exp: "1. <strong>Dịch câu hỏi sang tiếng Việt:</strong><br>Tom: \"Theo quan điểm của tớ, mạng xã hội đang làm thay đổi lối sống của giới trẻ quá nhiều.\"<br>Lisa: \"_________. Họ dành hàng giờ đồng hồ trên điện thoại thay vì nói chuyện trực tiếp.\"<br><br>2. <strong>Phân tích từ vựng 4 đáp án:</strong><br>• <span class='exp-english'>You're joking</span>: Cậu đùa à (Thể hiện sự không tin tưởng hoặc phản đối).<br>• <span class='exp-english'>I totally agree</span>: Tớ hoàn toàn đồng ý (Thể hiện sự đồng thuận cao).<br>• <span class='exp-english'>Are you serious</span>: Cậu nghiêm túc chứ (Thể hiện sự nghi ngờ).<br>• <span class='exp-english'>That's strange</span>: Thật kỳ lạ (Thể hiện sự ngạc nhiên trước một sự việc bất thường).<br><br>3. <strong>Tại sao chọn I totally agree:</strong> Lisa đưa ra một lý lẽ bổ trợ cho quan điểm của Tom: \"They spend hours on their phones instead of talking face-to-face\" (Họ dành hàng giờ dán mắt vào điện thoại thay vì trò chuyện trực tiếp). Điều này chứng minh Lisa có cùng suy nghĩ với Tom, nên cô ấy phải chọn \"I totally agree\" (Tớ hoàn toàn đồng ý).<br><br>4. <strong>Tại sao loại khác:</strong> Các phương án khác đều thể hiện thái độ nghi ngờ, ngạc nhiên hoặc phản đối, mâu thuẫn hoàn toàn với câu giải thích đồng thuận ngay phía sau của Lisa."
+                },
+                {
+                    id: "ex1_q3",
+                    title: "Mai & Peter: Family Dinner",
+                    q: "Mai: My family always has dinner together at 6 p.m. without phones on the table.<br>Peter: _________. That's a really nice family tradition!",
+                    options: ["You must be kidding", "I don't think so", "How wonderful", "Are you sure"],
+                    answer: "How wonderful",
+                    exp: "1. <strong>Dịch câu hỏi sang tiếng Việt:</strong><br>Mai: \"Gia đình tớ luôn ăn tối cùng nhau lúc 6 giờ tối mà không để điện thoại trên bàn.\"<br>Peter: \"_________. Đó thực sự là một truyền thống gia đình rất tuyệt vời!\"<br><br>2. <strong>Phân tích từ vựng 4 đáp án:</strong><br>• <span class='exp-english'>You must be kidding</span>: Chắc cậu đang đùa rồi (Thái độ hoài nghi).<br>• <span class='exp-english'>I don't think so</span>: Tớ không nghĩ vậy (Thái độ phản đối ý kiến).<br>• <span class='exp-english'>How wonderful</span>: Thật tuyệt vời làm sao (Thái độ khen ngợi, tán thưởng cảm xúc).<br>• <span class='exp-english'>Are you sure</span>: Cậu chắc chứ (Thái độ nghi vấn).<br><br>3. <strong>Tại sao chọn How wonderful:</strong> Ngay sau khoảng trống, Peter thốt lên: \"That's a really nice family tradition!\" (Đó là một truyền thống gia đình thực sự tốt đẹp!). Để bắt đầu câu cảm thán khen ngợi một thói quen tích cực như vậy, dùng \"How wonderful!\" (Thật tuyệt vời!) là phù hợp nhất về cảm xúc và ngữ dụng.<br><br>4. <strong>Tại sao loại khác:</strong> Các phương án còn lại đều thể hiện sự nghi ngờ hoặc không đồng tình, phá hỏng không khí tích cực và ấm áp của cuộc đối thoại."
+                },
+                {
+                    id: "ex1_q4",
+                    title: "David & Sarah: Early Yoga",
+                    q: "David: I wake up at 5 a.m. every day to do yoga before work.<br>Sarah: _________! I can never get up that early.",
+                    options: ["That's amazing", "Spot on", "Sounds boring", "Yes, I do"],
+                    answer: "That's amazing",
+                    exp: "1. <strong>Dịch câu hỏi sang tiếng Việt:</strong><br>David: \"Tớ thức dậy lúc 5 giờ sáng mỗi ngày để tập yoga trước khi đi làm.\"<br>Sarah: \"_________! Tớ không bao giờ có thể dậy sớm như thế được.\"<br><br>2. <strong>Phân tích từ vựng 4 đáp án:</strong><br>• <span class='exp-english'>That's amazing</span>: Thật kinh ngạc/Thật đáng ngưỡng mộ! (Bày tỏ sự thán phục trước việc khó làm).<br>• <span class='exp-english'>Spot on</span>: Hoàn toàn chính xác (Dùng để đồng tình với một nhận định chuẩn xác).<br>• <span class='exp-english'>Sounds boring</span>: Nghe có vẻ nhàm chán (Bày tỏ sự tiêu cực, chê bai).<br>• <span class='exp-english'>Yes, I do</span>: Có, tớ có làm (Câu trả lời cho câu hỏi Yes/No với trợ động từ Do).<br><br>3. <strong>Tại sao chọn That's amazing:</strong> David làm được một việc đòi hỏi kỷ luật cao là thức dậy từ 5 giờ sáng hàng ngày. Sarah bày tỏ sự khâm phục vì bản thân cô \"can never get up that early\" (không bao giờ dậy sớm nổi). Do đó, phản ứng tự nhiên và lịch thiệp nhất là \"That's amazing!\" (Thật đáng nể!).<br><br>4. <strong>Tại sao loại khác:</strong> 'Spot on' sai ngữ cảnh (đây không phải câu đố). 'Sounds boring' bất lịch sự và không ăn khớp với lý do \"không thể dậy sớm\" (chỉ việc khó chứ không phải chán). 'Yes, I do' sai cấu trúc giao tiếp đối thoại phản hồi."
+                },
+                {
+                    id: "ex1_q5",
+                    title: "Linda & Mike: Digital Detox",
+                    q: "Linda: Why don't you try a digital detox? No phone or computer for one weekend.<br>Mike: _________. I need my phone for everything!",
+                    options: ["Great idea", "No way", "Spot on", "Sound lovely"],
+                    answer: "No way",
+                    exp: "1. <strong>Dịch câu hỏi sang tiếng Việt:</strong><br>Linda: \"Tại sao cậu không thử một đợt thanh lọc kỹ thuật số nhỉ? Không dùng điện thoại hay máy tính trong một ngày cuối tuần xem.\"<br>Mike: \"_________. Tớ cần điện thoại cho mọi thứ!\"<br><br>2. <strong>Phân tích từ vựng 4 đáp án:</strong><br>• <span class='exp-english'>Great idea</span>: Ý kiến hay đấy (Đồng ý thử nghiệm).<br>• <span class='exp-english'>No way</span>: Không đời nào/Không thể nào (Từ chối thẳng thừng vì tính bất khả thi).<br>• <span class='exp-english'>Spot on</span>: Chuẩn xác rồi (Đồng tình ý kiến nhận định).<br>• <span class='exp-english'>Sound lovely</span>: Nghe dễ thương/tuyệt vời đấy (Đồng ý vui vẻ).<br><br>3. <strong>Tại sao chọn No way:</strong> Mike đưa ra lời giải thích: \"I need my phone for everything!\" (Tớ cần điện thoại cho tất cả mọi việc!). Đây là lý do khiến anh ấy hoàn toàn từ chối lời đề nghị không dùng điện thoại của Linda. Cụm từ \"No way\" (Không đời nào/Không thể nào) biểu thị sự từ chối mạnh mẽ và hài hước trong mối quan hệ bạn bè thân thiết.<br><br>4. <strong>Tại sao loại khác:</strong> Các phương án còn lại thể hiện sự đồng thuận cao, mâu thuẫn hoàn toàn với lời phàn nàn và sự từ chối ở vế sau."
+                }
+            ],
+            "ex2": [
+                {
+                    id: "ex2_q1",
+                    title: "Tom & Lisa: Staying Fit",
+                    q: "Sắp xếp hội thoại thành cuộc trò chuyện có nghĩa:<br>a. Lisa: I try to exercise three times a week. It helps me feel more energetic.<br>b. Tom: How do you stay so fit and healthy?<br>c. Tom: That's great! What kind of exercise do you do?<br>d. Lisa: I usually go jogging in the morning and do yoga in the evening.",
+                    options: ["b-a-c-d", "a-b-c-d", "c-d-a-b", "b-c-a-d"],
+                    answer: "b-a-c-d",
+                    exp: "1. <strong>Dịch nghĩa các câu hội thoại:</strong><br>• <i>a. Lisa: \"Tớ cố gắng tập thể dục 3 lần một tuần. Nó giúp tớ cảm thấy tràn đầy năng lượng hơn.\"</i><br>• <i>b. Tom: \"Làm sao cậu giữ được vóc dáng cân đối và khỏe mạnh như vậy?\"</i><br>• <i>c. Tom: \"Tuyệt quá! Cậu tập môn thể dục nào thế?\"</i><br>• <i>d. Lisa: \"Tớ thường chạy bộ vào buổi sáng và tập yoga vào buổi tối.\"</i><br><br>2. <strong>Phân tích trật tự logic:</strong><br>• Đầu tiên, Tom phải đặt câu hỏi chung về bí quyết giữ dáng của Lisa: <strong>(b)</strong> \"How do you stay so fit and healthy?\".<br>• Lisa đáp lại bằng một thói quen chung: <strong>(a)</strong> \"I try to exercise three times a week. It helps me feel more energetic.\".<br>• Tom khen ngợi và đào sâu thêm thông tin cụ thể: <strong>(c)</strong> \"That's great! What kind of exercise do you do?\".<br>• Lisa kể ra tên các môn thể thao chi tiết nhất để khép lại: <strong>(d)</strong> \"I usually go jogging in the morning and do yoga in the evening.\".<br>➔ Trình tự đúng: <strong>b-a-c-d</strong>.<br><br>3. <strong>Tại sao các đáp án khác sai:</strong> Các phương án còn lại làm hội thoại bị đảo lộn, khiến câu trả lời xuất hiện trước cả câu hỏi hoặc lời thoại bị nhảy cóc một cách phi lý."
+                },
+                {
+                    id: "ex2_q2",
+                    title: "Mike & Sarah: Fast Food Habits",
+                    q: "Sắp xếp hội thoại thành cuộc trò chuyện có nghĩa:<br>a. Mike: I stopped eating fast food last month.<br>b. Sarah: Really? How do you feel now?<br>c. Mike: Much better! I have more energy and I sleep better at night.<br>d. Sarah: That's amazing! Maybe I should try it too.",
+                    options: ["a-b-c-d", "b-a-c-d", "c-d-a-b", "a-c-b-d"],
+                    answer: "a-b-c-d",
+                    exp: "1. <strong>Dịch nghĩa các câu hội thoại:</strong><br>• <i>a. Mike: \"Tớ đã ngừng ăn đồ ăn nhanh từ tháng trước.\"</i><br>• <i>b. Sarah: \"Thật sao? Bây giờ cậu thấy thế nào?\"</i><br>• <i>c. Mike: \"Tốt hơn nhiều! Tớ có nhiều năng lượng hơn và ngủ ngon hơn vào ban đêm.\"</i><br>• <i>d. Sarah: \"Thật đáng ngạc nhiên! Chắc là tớ cũng nên thử xem sao.\"</i><br><br>2. <strong>Phân tích trật tự logic:</strong><br>• Mike bắt đầu chia sẻ về một thay đổi lớn của mình: <strong>(a)</strong> \"I stopped eating fast food last month.\".<br>• Sarah bày tỏ sự ngạc nhiên và hỏi thăm sức khỏe hiện tại: <strong>(b)</strong> \"Really? How do you feel now?\".<br>• Mike trả lời đầy hào hứng về những điểm tích cực: <strong>(c)</strong> \"Much better! I have more energy and I sleep better at night.\".<br>• Sarah thốt lên khen ngợi và có ý định áp dụng theo: <strong>(d)</strong> \"That's amazing! Maybe I should try it too.\".<br>➔ Trình tự đúng: <strong>a-b-c-d</strong>.<br><br>3. <strong>Tại sao các đáp án khác sai:</strong> Các trình tự khác bị ngắt quãng, ví dụ đặt câu hỏi cảm nhận (b) lên trước khi Mike chia sẻ việc ngừng ăn đồ ăn nhanh (a) là hoàn toàn sai logic trò chuyện."
+                },
+                {
+                    id: "ex2_q3",
+                    title: "Anna & David: Work-Life Balance",
+                    q: "Sắp xếp hội thoại thành cuộc trò chuyện có nghĩa:<br>a. Anna: I work from 9 to 5, then spend time with my family.<br>b. David: How do you balance work and personal life?<br>c. David: Do you check work emails at home?<br>d. Anna: Never! When I'm home, I focus only on my family.<br>e. David: That's a healthy lifestyle. I should learn from you!",
+                    options: ["a-b-c-d-e", "b-a-c-d-e", "c-a-b-d-e", "b-c-a-d-e"],
+                    answer: "b-a-c-d-e",
+                    exp: "1. <strong>Dịch nghĩa các câu hội thoại:</strong><br>• <i>a. Anna: \"Tớ làm việc từ 9 giờ sáng đến 5 giờ chiều, sau đó dành thời gian cho gia đình.\"</i><br>• <i>b. David: \"Làm thế nào cậu cân bằng được công việc và cuộc sống cá nhân?\"</i><br>• <i>c. David: \"Cậu có kiểm tra email công việc ở nhà không?\"</i><br>• <i>d. Anna: \"Không bao giờ! Khi ở nhà, tớ chỉ tập trung vào gia đình thôi.\"</i><br>• <i>e. David: \"Đó là một lối sống lành mạnh. Tớ nên học tập cậu!\"</i><br><br>2. <strong>Phân tích trật tự logic:</strong><br>• David đặt câu hỏi lớn mở đầu cuộc thảo luận: <strong>(b)</strong> \"How do you balance work and personal life?\".<br>• Anna trả lời chi tiết về quỹ thời gian cố định hằng ngày: <strong>(a)</strong> \"I work from 9 to 5, then spend time with my family.\".<br>• David tò mò hỏi sâu thêm một hành vi phổ biến: <strong>(c)</strong> \"Do you check work emails at home?\".<br>• Anna quả quyết phủ nhận để nhấn mạnh tính kỷ luật: <strong>(d)</strong> \"Never! When I'm home, I focus only on my family.\".<br>• David bày tỏ sự ngưỡng mộ và tôn vinh: <strong>(e)</strong> \"That's a healthy lifestyle. I should learn from you!\".<br>➔ Trình tự đúng: <strong>b-a-c-d-e</strong>.<br><br>3. <strong>Tại sao các đáp án khác sai:</strong> Các trình tự khác khiến David thốt ra lời đúc kết (e) quá sớm hoặc nhảy bổ vào câu hỏi phụ (c) trước khi xây dựng ngữ cảnh thời gian (b-a) làm câu chuyện rời rạc, bất hợp lý."
+                }
+            ]
+        };
+
+        let activeCategory = "ex1";
+        let studentAnswers = {};
+
+        function initQuizLayout() {
+            renderQuestions();
+            updateFooterBarStatus();
+        }
+
+        function switchCategory(categoryKey) {
+            activeCategory = categoryKey;
+            
+            // Toggle active tabs style
+            document.querySelectorAll("#tab-nav-container button").forEach(btn => {
+                btn.className = "py-2.5 px-6 rounded-2xl text-sm font-black transition-all bg-white/40 text-white";
+            });
+            document.getElementById(`tab-${categoryKey}`).className = "py-2.5 px-6 rounded-2xl text-sm font-black transition-all bg-white text-slate-800 shadow-md";
+
+            renderQuestions();
+        }
+
+        function renderQuestions() {
+            const workspace = document.getElementById('questions-workspace');
+            workspace.innerHTML = "";
+            const activeQuestions = database[activeCategory];
+
+            activeQuestions.forEach((q, idx) => {
+                const userChoice = studentAnswers[q.id];
+                
+                const card = document.createElement('section');
+                card.id = `card-${q.id}`;
+                card.className = "glass-card p-6 md:p-8 relative transition-all";
+
+                // Generate Title layout
+                const cardHeader = `
+                    <div class="flex items-center justify-between border-b-2 border-slate-200/50 pb-3 mb-5">
+                        <span class="bg-purple-700 text-white font-extrabold px-3.5 py-1.5 rounded-xl text-xs uppercase shadow-sm">
+                            Câu ${idx + 1}
+                        </span>
+                        <span class="text-xs font-black text-purple-800 uppercase tracking-wider">${q.title}</span>
+                    </div>
+                    <div class="text-base md:text-lg font-bold text-slate-800 leading-relaxed mb-6">${q.q}</div>
+                `;
+
+                // Generate Options Layout 2x2 Grid with shuffled arrays
+                const grid = document.createElement('div');
+                grid.className = "grid grid-cols-1 md:grid-cols-2 gap-4";
+
+                // We can preserve the ordering or dynamically shuffle them once per session
+                q.options.forEach((opt, oIdx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "btn-answer btn-3d font-bold p-4 rounded-2xl text-left flex items-center gap-2 text-sm md:text-base";
+                    
+                    let prefixIcon = `<i class="fa-regular fa-circle text-purple-300"></i>`;
+                    if (userChoice) {
+                        btn.classList.add('disabled', 'opacity-65', 'pointer-events-none');
+                        if (opt === q.answer) {
+                            btn.className = "btn-answer correct font-bold p-4 rounded-2xl text-left flex items-center gap-2 text-sm md:text-base";
+                            prefixIcon = `<i class="fa-solid fa-circle-check text-white animate-bounce"></i>`;
+                        } else if (userChoice.selected === opt) {
+                            btn.className = "btn-answer wrong font-bold p-4 rounded-2xl text-left flex items-center gap-2 text-sm md:text-base";
+                            prefixIcon = `<i class="fa-solid fa-circle-xmark text-white"></i>`;
+                        }
+                    }
+
+                    btn.innerHTML = `${prefixIcon} <span class="font-black text-xs bg-black/10 py-0.5 px-2 rounded-lg mr-1">${String.fromCharCode(65 + oIdx)}</span> ${opt}`;
+                    btn.onclick = () => selectAnswerOption(q.id, opt, q.answer);
+                    grid.appendChild(btn);
+                });
+
+                // Generate detailed explanation box
+                const explanationBlock = document.createElement('div');
+                explanationBlock.id = `explanation-${q.id}`;
+                explanationBlock.className = `explanation-box mt-6 ${userChoice ? 'block' : 'hidden'}`;
+                explanationBlock.innerHTML = `
+                    <div class="bg-amber-100 border-b-2 border-dashed border-amber-300 px-4 py-2.5 font-black text-xs md:text-sm text-center text-amber-900 rounded-t-2xl flex justify-center items-center gap-2">
+                        <i class="fa-solid fa-lightbulb text-amber-500 animate-pulse"></i> Thạc sỹ Ms Lê Hằng English giải thích siêu chi tiết:
+                    </div>
+                    <div class="p-5 text-slate-700 text-xs md:text-sm leading-relaxed">
+                        ${q.exp}
+                    </div>
+                `;
+
+                card.innerHTML = cardHeader;
+                card.appendChild(grid);
+                card.appendChild(explanationBlock);
+                workspace.appendChild(card);
+            });
+        }
+
+        function selectAnswerOption(questionId, selectedOpt, correctAns) {
+            if (studentAnswers[questionId]) return; // Block double answer clicks
+
+            const isCorrect = selectedOpt === correctAns;
+            studentAnswers[questionId] = {
+                selected: selectedOpt,
+                isCorrect: isCorrect
+            };
+
+            const card = document.getElementById(`card-${questionId}`);
+            if (isCorrect) {
+                playGamifiedSound('correct');
+                spawnChimeConfetti();
+            } else {
+                playGamifiedSound('wrong');
+                if (card) {
+                    card.classList.add('shake');
+                    setTimeout(() => card.classList.remove('shake'), 400);
+                }
+            }
+
+            renderQuestions();
+            updateFooterBarStatus();
+        }
+
+        function updateFooterBarStatus() {
+            let totalQuestionsCount = 0;
+            for (const key in database) {
+                totalQuestionsCount += database[key].length;
+            }
+
+            const answeredCount = Object.keys(studentAnswers).length;
+            const progressPercent = totalQuestionsCount > 0 ? (answeredCount / totalQuestionsCount) * 100 : 0;
+
+            document.getElementById('footer-progress-bar-fill').style.width = `${progressPercent}%`;
+            document.getElementById('footer-answered-counter').innerText = answeredCount;
+            document.getElementById('footer-total-counter').innerText = totalQuestionsCount;
+        }
+
+        function submitTestAssessment() {
+            let totalQuestionsCount = 0;
+            for (const key in database) {
+                totalQuestionsCount += database[key].length;
+            }
+
+            const answeredCount = Object.keys(studentAnswers).length;
+            if (answeredCount === 0) {
+                playGamifiedSound('wrong');
+                showEvaluationModal("Con chưa hoàn thành câu hỏi nào cả! Hãy thử sức mình với các câu hỏi bên trên trước nhé.", 0, 0, totalQuestionsCount);
+                return;
+            }
+
+            let correctCount = 0;
+            for (const qId in studentAnswers) {
+                if (studentAnswers[qId].isCorrect) correctCount++;
+            }
+
+            const finalPercent = Math.round((correctCount / totalQuestionsCount) * 100);
+            let appraisal = "";
+
+            if (finalPercent < 50) {
+                appraisal = "Điểm lần này chưa cao lắm, con cố gắng đọc kĩ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!";
+                playGamifiedSound('wrong');
+            } else if (finalPercent >= 50 && finalPercent <= 80) {
+                appraisal = "Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kĩ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!";
+                playGamifiedSound('correct');
+                spawnChimeConfetti();
+            } else {
+                appraisal = "Làm tốt lắm, con cố gắng ring điểm 10 ở lần sau nha!";
+                playGamifiedSound('correct');
+                spawnChimeConfetti();
+                setTimeout(spawnChimeConfetti, 1200);
+            }
+
+            showEvaluationModal(appraisal, finalPercent, correctCount, totalQuestionsCount);
+        }
+
+        function showEvaluationModal(appraisalText, pct, correct, total) {
+            document.getElementById('evaluation-percentage').innerText = `${pct}%`;
+            document.getElementById('evaluation-fraction').innerText = `(${correct}/${total} câu trả lời chính xác)`;
+            document.getElementById('evaluation-praise-box').innerText = appraisalText;
+            document.getElementById('result-evaluation-modal').classList.remove('hidden');
+        }
+
+        function closeEvaluationDialog() {
+            document.getElementById('result-evaluation-modal').classList.add('hidden');
+        }
+
+        function restartTestSession() {
+            studentAnswers = {};
+            remainingTime = 600;
+            isTimerActive = false;
+            clearInterval(timerInterval);
+            document.getElementById('timer-btn-text').innerText = 'BẮT ĐẦU TÍNH GIỜ LÀM BÀI';
+            document.getElementById('timer-icon').className = 'fa-solid fa-play';
+            document.getElementById('timer-display-box').classList.add('hidden');
+            
+            initQuizLayout();
+            closeEvaluationDialog();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Window onload loader
+        window.onload = function() {
+            initQuizLayout();
+        };
+    </script>
+</body>
+</html>
